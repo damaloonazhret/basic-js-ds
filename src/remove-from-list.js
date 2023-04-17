@@ -20,7 +20,7 @@ const { NotImplementedError } = require('../extensions/index.js');
  *     this.value = x;
  *     this.next = null;
  *   }
- * }
+ * }/
  */
 function removeKFromList(/* l, k */) {
   throw new NotImplementedError('Not implemented');
