@@ -1,6 +1,6 @@
 const {NotImplementedError} = require('../extensions/index.js');
 
-const { Node } = require('../extensions/list-tree.js');
+const {Node} = require('../extensions/list-tree.js');
 
 /**
  * Implement simple binary search tree according to task description
@@ -10,12 +10,15 @@ class BinarySearchTree {
     constructor() {
         this.binary = null;
     }
+
     root() {
         return this.binary;
     }
+
     add(data) {
         // console.log('data:', data);
         this.binary = addElem(this.binary, data);
+
         // console.log('this.binary', this.binary)
         function addElem(node, data) {
             if (!node) {
@@ -34,18 +37,41 @@ class BinarySearchTree {
         }
     }
 
-    has(/* data */) {}
+    has(data) {
+        if (this.find(data)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 
-    find(/* data */) {}
+    find(data) {
+        return binaryFind(this.binary, data);
 
-    remove(/* data */) {}
+        function binaryFind(node, data) {
+            if (!node) {
+                return null;
+            }
+            if (node.data === data) {
+                return node;
+            }
+            if (data > node.data) {
+                return binaryFind(node.right, data);
+            } else {
+                return binaryFind(node.left, data);
+            }
+        }
+    }
+
+    remove(/* data */) {
+    }
 
     min() {
-        if(!this.binary){
+        if (!this.binary) {
             return null;
         }
         let node = this.binary;
-        while(node.left){
+        while (node.left) {
             node = node.left;
             // console.log("Node:", node.left);
         }
@@ -54,11 +80,11 @@ class BinarySearchTree {
     }
 
     max() {
-        if(!this.binary){
+        if (!this.binary) {
             return null;
         }
         let node = this.binary;
-        while(node.right){
+        while (node.right) {
             // console.log("Node:", node.right);
             node = node.right;
         }
